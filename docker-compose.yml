@@ -1,0 +1,19 @@
+version: '2'
+services:
+  sshtunnel:
+    image: ksurl/sshtunnel
+    container_name: sshtunnel
+    ports:
+      - 80:80
+    environment:
+      - ssh_host=host
+      - ssh_port=22
+      - ssh_username=root
+      #- ssh_password=password
+      - ssh_private_key_password=password
+      - remote_bind_addresses=[("127.0.0.1", 80)]
+      - local_bind_addresses=[("0.0.0.0", 80)]
+    volumes:
+      - ./sshkey:/private.key
+    restart: always
+

@@ -1,0 +1,3 @@
+#!/bin/sh
+
+su-exec ${PUID}:${PGID} /usr/local/bin/python /etc/tunnel/tunnel.py
