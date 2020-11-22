@@ -6,14 +6,15 @@ services:
     ports:
       - 80:80
     environment:
-      - ssh_host=host
-      - ssh_port=22
-      - ssh_username=root
-      #- ssh_password=password
-      - ssh_private_key_password=password
-      - remote_bind_addresses=[("127.0.0.1", 80)]
-      - local_bind_addresses=[("0.0.0.0", 80)]
+      - PUID=1000
+      - PGID=1000
+      - SSH_HOST=host
+      - SSH_PORT=22
+      - SSH_USERNAME=root
+      #- SSH_PASSWORD=password
+      - SSH_PRIVATE_KEY_PASSWORD=password
+      - REMOTE_BIND_ADDRESSES=[("127.0.0.1", 80)]
+      - LOCAL_BIND_ADDRESSES=[("0.0.0.0", 80)]
     volumes:
       - ./sshkey:/private.key
     restart: always
-

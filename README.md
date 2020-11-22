@@ -7,7 +7,7 @@
 ## docker cli
 
     docker run -d \
-        --name=tunnel \
+        --name=sshtunnel \
         -v ./sshkey:/private.key \
         -p 80:80 \ # change port as needed
         -e PUID=1000 \
@@ -27,7 +27,7 @@
     services:
       redbot:
         image: ksurl/sshtunnel:latest
-        container_name: tunnel
+        container_name: sshtunnel
         ports:
           - 80:80 # change ports as needed
         environment:
