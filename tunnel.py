@@ -6,7 +6,8 @@ import ast
 import logging
 import io
 from contextlib import redirect_stdout
-#Logger
+
+# Logger
 logging.basicConfig(format='%(asctime)s %(levelname)s %(message)s',
     datefmt='%d/%m/%Y %H:%M:%S',level=logging.INFO)
 
@@ -21,33 +22,29 @@ ch.setLevel(logging.ERROR)
 ### Add the console handler to the logger
 logger.addHandler(ch)
 
-
 logging.info("Logger set!")
 
 logging.info("SSH Tunnel starting...")
 
 def main():
-    #Env variables
-    ssh_host = os.environ.get("ssh_host")
-    ssh_port = os.environ.get("ssh_port")
-    ssh_username = os.environ.get("ssh_username")
-    ssh_password = os.environ.get("ssh_password")
-    ssh_private_key_password = os.environ.get("ssh_private_key_password")
-    remote_bind_addresses = os.environ.get("remote_bind_addresses")
-    local_bind_addresses = os.environ.get("local_bind_addresses")
+    # Environment variables
+    ssh_host = os.environ.get("SSH_HOST")
+    ssh_port = os.environ.get("SSH_PORT")
+    ssh_username = os.environ.get("SSH_USERNAME")
+    ssh_password = os.environ.get("SSH_PASSWORD")
+    ssh_private_key_password = os.environ.get("SSH_PRIVATE_KEY_PASSWORD")
+    remote_bind_addresses = os.environ.get("REMOTE_BIND_ADDRESSES")
+    local_bind_addresses = os.environ.get("LOCAL_BIND_ADDRESSES")
     
     private_key_dir = "/private.key"
     if os.path.exists(private_key_dir):
         logging.info("Private key found, certificate mode enabled")
         if ssh_private_key_password is None:
-            logging.error("Private key password not set, please set it as an environment variable: ssh_private_key_password")
+            logging.error("Private key password not set, please set it as an environment variable: SSH_PRIVATE_KEY_PASSWORD")
             sys.exit(-1)
     elif ssh_password is None:
         logging.error("SSH Password not provided, quitting...")
         sys.exit(-1)
-
-    
-    
 
     if os.path.exists(private_key_dir):
         try:
@@ -92,9 +89,8 @@ def main():
             logging.error("SSH Tunnel ended")
             sys.exit(-2)
 
-
 def CheckTunnel(server, stdout):
-    #Check for remote side error from internal modules of Paramiko/SSHTunnel
+    # Check for remote side error from internal modules of Paramiko/SSHTunnel
     out = stdout.getvalue()
 
     if 'to remote side of the tunnel' in out:
@@ -109,5 +105,6 @@ def CheckTunnel(server, stdout):
             logging.error("Tunnel is dead, restarting...")
             sys.exit(-1)
     sleep(1)
-    
-main()
+
+if __name__ == "__main__":
+    main()
