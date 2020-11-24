@@ -1,13 +1,14 @@
 FROM        python:alpine
 
-LABEL       maintainer="ksurl"
+LABEL       org.opencontainers.image.source="https://github.com/ksurl/docker-flexget"
 
-COPY        tunnel.py /etc/tunnel/tunnel.py
-COPY        init /init
+LABEL       maintainer="ksurl"
 
 ENV         PUID=1000 \
             PGID=1000 \
             SSH_PORT=22
+
+COPY        root/ /
 
 RUN         chmod +x \
                 /etc/tunnel/tunnel.py \
@@ -24,7 +25,7 @@ RUN         chmod +x \
             pip install --no-cache-dir \
                 sshtunnel && \
             apk del --purge --no-cache .build-deps && \
-            rm -rf /tmp/* /var/cache/apk/* /root/.cache            
+            rm -rf /tmp/* /var/cache/apk/* /root/.cache
 
 ENTRYPOINT  [ "/usr/bin/dumb-init", "--" ]
 CMD         [ "/init" ]
