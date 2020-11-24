@@ -1,6 +1,8 @@
-# Docker image for ssh tunnels based on python script from [sshtunneller](https://github.com/jossec101/sshtunneller) by [jossec101](https://github.com/jossec101)
+# Docker image for ssh tunnels based on [jossec101/sshtunneller](https://github.com/jossec101/sshtunneller)
 
 * Based on python:alpine
+* dumb-init
+* non-root user
 
 # Usage
 
@@ -58,4 +60,4 @@
 | `-e REMOTE_BIND_ADDRESSES` | List of remote ports to bind. List multiple in comma separated parentheses | |
 | `-e LOCAL_BIND_ADDRESSES` | List of local ports to bind. List multiple matching REMOTE_BIND_ADDRESSES | |
 | `-p 80:80` | Expose ports as needed | |
-| `-v ./sshkey:/private.key` | bindmount for private key | `./sshkey` |
+| `-v ./sshkey:/private.key` | bindmount for private key | |

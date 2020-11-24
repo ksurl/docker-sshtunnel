@@ -5,6 +5,10 @@ LABEL       maintainer="ksurl"
 COPY        tunnel.py /etc/tunnel/tunnel.py
 COPY        init /init
 
+ENV         PUID=1000 \
+            PGID=1000 \
+            SSH_PORT=22
+
 RUN         chmod +x \
                 /etc/tunnel/tunnel.py \
                 /init && \
