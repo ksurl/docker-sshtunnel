@@ -13,8 +13,8 @@ RUN         chmod +x \
                 make \
                 libffi-dev \
                 musl-dev && \
-			apk add --no-cache --virtual .run-deps \
-		        dumb-init \
+			      apk add --no-cache \
+		            dumb-init \
                 libressl-dev \
                 su-exec && \
             pip install --no-cache-dir \
@@ -22,5 +22,5 @@ RUN         chmod +x \
             apk del --purge --no-cache .build-deps && \
             rm -rf /tmp/* /var/cache/apk/* /root/.cache            
 
-ENTRYPOINT  [ "/usr/local/bin/dumb-init", "--" ]
+ENTRYPOINT  [ "/usr/bin/dumb-init", "--" ]
 CMD         [ "/init" ]
