@@ -1,6 +1,6 @@
 FROM        python:alpine
 
-LABEL       org.opencontainers.image.source="https://github.com/ksurl/docker-flexget"
+LABEL       org.opencontainers.image.source="https://github.com/ksurl/docker-sshtunnel"
 
 LABEL       maintainer="ksurl"
 
