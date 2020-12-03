@@ -1,5 +1,9 @@
 # Docker image for ssh tunnels based on [jossec101/sshtunneller](https://github.com/jossec101/sshtunneller)
 
+[![](https://img.shields.io/badge/Docker%20Hub--blue)](https://hub.docker.com/r/ksurl/sshtunnel) [![](https://img.shields.io/badge/GitHub%20Container%20Registry--yellow)](https://github.com/users/ksurl/packages/container/package/sshtunnel)
+
+[![](https://img.shields.io/github/v/tag/ksurl/docker-sshtunnel?label=image%20version&logo=docker)](https://hub.docker.com/r/ksurl/sshtunnel) [![](https://img.shields.io/docker/image-size/ksurl/sshtunnel/latest?color=lightgrey&logo=Docker)]() [![](https://img.shields.io/github/workflow/status/ksurl/docker-sshtunnel/build?label=build&logo=Docker)](https://github.com/ksurl/docker-sshtunnel/actions?query=workflow%3Abuild)
+
 * Based on python:alpine
 * dumb-init
 * non-root user
