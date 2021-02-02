@@ -14,7 +14,7 @@
 
     docker run -d \
         --name=sshtunnel \
-        -v ./sshkey:/private.key \
+        -v ./sshkey:/private.key:ro \
         -p 80:80 \ # change port as needed
         -e PUID=1000 \
         -e PGID=1000 \
@@ -25,14 +25,14 @@
         -e SSH_PRIVATE_KEY_PASSWORD=password \
         -e REMOTE_BIND_ADDRESSES=[("127.0.0.1", 80)] \ # change port as needed
         -e LOCAL_BIND_ADDRESSES=[("0.0.0.0", 80)] \ # change port as needed
-        ksurl/sshtunnel
+        ghcr.io/ksurl/sshtunnel
 
 ## docker-compose 
 
-    version: "2"
+    version: "3.8"
     services:
       redbot:
-        image: ksurl/sshtunnel:latest
+        image: ghcr.io/ksurl/sshtunnel
         container_name: sshtunnel
         ports:
           - 80:80 # change ports as needed
@@ -47,7 +47,7 @@
           - REMOTE_BIND_ADDRESSES=[("127.0.0.1", 80)] # change port as needed
           - LOCAL_BIND_ADDRESSES=[("0.0.0.0", 80)] # change port as needed
         volumes:
-          - ./sshkey:/private.key
+          - ./sshkey:/private.key:ro
         restart: always
 
 ## Parameters
@@ -64,4 +64,4 @@
 | `-e REMOTE_BIND_ADDRESSES` | List of remote ports to bind. List multiple in comma separated parentheses | |
 | `-e LOCAL_BIND_ADDRESSES` | List of local ports to bind. List multiple matching REMOTE_BIND_ADDRESSES | |
 | `-p 80:80` | Expose ports as needed | |
-| `-v ./sshkey:/private.key` | bindmount for private key | |
+| `-v ./sshkey:/private.key:ro` | bindmount for private key | |

@@ -1,7 +1,7 @@
-version: '2'
+version: "3.8"
 services:
   sshtunnel:
-    image: ksurl/sshtunnel
+    image: ghcr.io/ksurl/sshtunnel
     container_name: sshtunnel
     ports:
       - 80:80
@@ -16,5 +16,5 @@ services:
       - REMOTE_BIND_ADDRESSES=[("127.0.0.1", 80)]
       - LOCAL_BIND_ADDRESSES=[("0.0.0.0", 80)]
     volumes:
-      - ./sshkey:/private.key
+      - ./sshkey:/private.key:ro
     restart: always
